@@ -33,7 +33,11 @@ end
 % Insert code here to compute vp (3x1 vector in homogeneous coordinates)
 for i=0:(count/2-1)
 vp(:,end+1)=cross(lines(:,2*i+1),lines(:,2*i+2))
+
 end
+vp(:,1)=vp(:,1)./vp(3,1);
+vp(:,2)=vp(:,2)./vp(3,2); 
+vp(:,3)=vp(:,3)./vp(3,3);
 assignin('base', 'vp', vp);
 
 %% projection matrix
@@ -53,8 +57,11 @@ for i=1:3
     axes(:, end+1) = real(cross([x1 y1 1]', [x2 y2 1]'))
     axes_length(end+1) = sqrt((y2-y1)^2 + (x2-x1).^2);
     %centers(:, end+1) = [x1+x2 y1+y2 2]/2;
-  
+       
 end
+axes(:,1)=axes(:,1)./axes(3,1);
+axes(:,2)=axes(:,2)./axes(3,2); 
+axes(:,3)=axes(:,3)./axes(3,3);
 assignin('base', 'axes', axes);
 assignin('base', 'axes_length', axes_length);
 
@@ -80,3 +87,4 @@ end
 plot(vp(1)/vp(3), vp(2)/vp(3), '*r')
 axis image
 axis([bx1 bx2 by1 by2]); 
+
