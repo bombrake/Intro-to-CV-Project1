@@ -1,6 +1,6 @@
 %clc;
 
-I = imread('box2.jpeg');
+I = imread('sony.png');
 Vanishing_Points(I);
 
 a_x = ( vp(:,1) \ (axes(:,1)-origin ) ) / axes_length(1); %( A \ B ==> left division )
@@ -24,11 +24,11 @@ Hxzinvt=invert(Hxz);
 imx = imwarp(I,Hxyinvt); 
 imy = imwarp(I,Hyzinvt); 
 imz = imwarp(I,Hxzinvt);  
-figure  
+figure(1)  
 imshow(imx); 
-figure 
+figure(2)
 imshow(imy); 
-figure
+figure(3)
 imshow(imz);
 
 %imx = imwarp(I,Hxy);
